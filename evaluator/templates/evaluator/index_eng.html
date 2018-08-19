@@ -1,0 +1,440 @@
+{% load static %}
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RealEstateEvaluator</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="{% static 'evaluator/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="{% static 'evaluator/vendor/font-awesome/css/font-awesome.min.css' %}">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="{% static 'evaluator/css/fontastic.css' %}">
+    <!-- Google fonts - Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <!-- jQuery Circle-->
+    <link rel="stylesheet" href="{% static 'evaluator/css/grasp_mobile_progress_circle-1.0.0.min.css' %}">
+    <!-- Custom Scrollbar-->
+    <link rel="stylesheet" href="{% static 'evaluator/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css' %}">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{% static 'evaluator/css/style.default.css' %}" id="theme-stylesheet' %}">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{% static 'evaluator/css/custom.css' %}">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="{% static 'evaluator/img/favicon.ico' %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin=""/>
+
+    <style>
+        #id_map { height: 300px; }
+        label{
+          font-size:20px;
+        }
+        #id_topdiv{
+          margin-top:30px;
+        }
+        #id_price_h2{
+          font-size: 50px;
+          align-content:center;
+          color: red ;
+          text-align: center;
+        }
+        form label{
+          font-size: 15px;  
+        }
+        form .text-small{
+          font-size:13px;
+        }
+        form input{
+          max-height:31.5px;
+        }
+        form select{
+          max-height:31.5px;
+        }
+        .disc_stat_font{
+          font-size: 80px;
+        }
+    </style>
+      
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <div class="page">
+      <!-- navbar-->
+      <header class="header">
+        <nav class="navbar">
+          <div class="container-fluid">
+            <div class="navbar-holder d-flex align-items-center justify-content-between">
+              <div class="navbar-header">
+                <a href="index.html" class="navbar-brand">
+                  <div class="brand-text d-none d-md-inline-block"><span>RealEstate </span><strong class="text-primary">Evaluator</strong></div></a></div>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <!-- Counts Section -->
+
+      <div class='container-fluid' id='id_topdiv'>
+        <div class='row d-flex align-items-md-stretch'>
+            <div class="col-md-5">
+              <div class="card">
+                <div class="card-header d-flex align-items-center">
+                  <h4>Input Retrival Infomation</h4>
+                </div>
+                <div class="card-body">
+                  <form class="form-horizontal">
+  
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 form-control-label">Address</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">in chinese</span>
+                      </div>
+                    </div>
+  
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 form-control-label">Ping(坪)</label>
+                      <div class="col-sm-8">
+                        <input type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">Taiwanese units of measurement "坪"(Ping), 1 square meter = 3.3025 Ping, please input range from 0 to 2000 Pings</span>
+                      </div>
+                    </div>
+  
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 form-control-label">House Age</label>
+                      <div class="col-sm-8">
+                        <input type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">please input range from 0 to 100 years old</span>
+                      </div>
+                    </div>
+  
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 form-control-label">Usage</label>
+                      <div class="col-sm-8 mb-3">
+                        <select name="usage" class="form-control text-small">
+                          <option>For Living</option>
+                          <option>For Business</option>
+                          <option>Other</option>
+                        </select>
+                      </div>
+                    </div>
+  
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 form-control-label">Building Type</label>
+                      <div class="col-sm-8 mb-3">
+                        <select name="building_type" class="form-control  text-small">
+                          <option>1. Residential Building(residential building with legal elevators, above 10 floors.)</option>
+                          <option>2. Huaxia(residential buildings with elevators, above 7th floor and below 11th floor.)</option>
+                          <option>3. Apartment(residential buildings below 6th floor, according to the law can not set up elevators.)</option>
+                          <option>4. Thorough(buildings below the 6th floor, only a single owner.)</option>
+                          <option>5. Business Office</option>
+                          <option>6. Store</option>
+                          <option>7. Suite</option>
+                          <option>8. Factory</option>
+                          <option>9. Other</option>
+                        </select>
+                      </div>
+                    </div>
+  
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 form-control-label">Building Material</label>
+                      <div class="col-sm-8 mb-3">
+                        <select name="building_material" class="form-control  text-small">
+                          <option>RC(Reinforced Concrete)</option>
+                          <option>Brick</option>
+                        </select>
+                      </div>
+                    </div>
+  
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 form-control-label">District</label>
+                      <div class="col-sm-8 mb-3">
+                        <select name="district" class="form-control  text-small">
+                          <option>Wenshan(文山)</option>
+                          <option>Zhongzheng(中正)</option>
+                          <option>Wanhua(萬華)</option>
+                          <option>Datong(大同)</option>
+                          <option>Zhongshan(中山)</option>
+                          <option>Neihu(內湖)</option>
+                          <option>Songshan(松山)</option>
+                          <option>Xinyi(信義)</option>
+                          <option>Nangang(南港)</option>
+                          <option>Beitou(北投)</option>
+                          <option>Shilin(士林)</option>
+                          <option>Other</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-3 form-control-label">Other</label>
+                      <div class="col-sm-9">
+                        <div>
+                          <input id="option_having_organizational_management" type="checkbox" value="">
+                          <label for="option_having_organizational_management">having organizational management</label>
+                        </div>
+                        <div>
+                          <input id="option_having_compartment" type="checkbox" value="">
+                          <label for="option_having_compartment">having compartment</label>
+                        </div>
+                        <div>
+                          <input id="option_having_addition" type="checkbox" value="">
+                          <label for="option_having_addition">having addition</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <div class="col-md-3 offset-md-9">
+                        <button type="submit" class="btn btn-primary">Evaluate</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-header d-flex align-items-center">
+                  <h4>Output Evaluated Infomation</h4>
+                </div>
+                <div class="card-body">
+                  <div class="row d-flex">
+                    <div class="col-lg-12">
+
+
+                      <div class="card">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <h2>Evaluated Price</h2>
+                            <p class="text-small">Based on XGBoost model.</p>
+                          </div>
+                          <div class="col-md-6"><h2 id="id_price_h2">126,418<font class="text-small" style="color:black;">/Ping</font></h2></div>
+                        </div>
+                      </div>
+
+                      <div class="card">
+                        <h2>Feature Importance</h2>
+                        <p class="text-small"> List the importance of the feature effecting the price.</p>
+                        <div class="col-md-12 pie-chart ">
+                          <canvas id="featureImpPieChart" > </canvas>
+                        </div>
+                      </div>
+
+
+                      <div class="card">
+                        <h2>Descriptive Statistics</h2>
+                        <div class="row">
+
+                          <div class="col-md-6">
+                            <div class="wrapper count-title d-flex text-center">
+                              <div class="name"><strong class="text-uppercase">Average Price</strong><span class="text-small">in top 8 nearest records</span>
+                                <div class="count-number"><font class="disc_stat_font">25</font></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="wrapper count-title d-flex text-center">
+                              <div class="name"><strong class="text-uppercase">Average Income</strong><span class="text-small">in the village(村里)</span>
+                                <div class="count-number"><font class="disc_stat_font">25</font></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="wrapper count-title d-flex text-center">
+                              <div class="name"><strong class="text-uppercase">Distance to nearest MRT</strong><span></span>
+                                <div class="count-number"><font class="disc_stat_font">25</font></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="wrapper count-title d-flex text-center">
+                              <div class="name"><strong class="text-uppercase">Number of Bus Stations</strong><br/><span class="text-small">in 100m</span>
+                                <div class="count-number"><font class="disc_stat_font">25</font></div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+    
+
+
+
+
+        </div>
+
+      </div>
+
+      <div id="id_map"></div>
+
+      <!-- Header Section-->
+      <section class="dashboard-header section-padding">
+        <div class="container-fluid">
+          <div class="row d-flex align-items-md-stretch">
+
+            <!-- Line Chart -->
+            <div class="col-md-6">
+                <div class="card sales-report">
+                    <h2 class="display h4">Fitting Trend of XGboost Model</h2>
+                    <p> Xgboost perform quite well on predicting house price.
+                      Red points represents the actual price, while black points represents predicted price. 
+                      xAxes is data index and yAxes is ln(price).
+                    </p>
+                <img width="500" src="{% static 'evaluator\img/fitting_plot_subtotal_log_divid_m2.png' %}">
+              </div>
+            </div>
+            
+
+
+            <!-- Line Chart -->
+            <div class="col-md-6">
+              <div class="card sales-report">
+                <h2 class="display h4">Accuracy of XGboost Model</h2>
+                <p> Xgboost perform quite well on predicting house price. We successfilly predict 
+                  80% of our testing data with less than 30% error, 
+                  65% of our testing data with less than 20% error, 
+                  45% of our testing data with less than 10% error.
+                </p>
+                <div>
+                  <canvas id="accuracyLineChart"></canvas>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+
+
+      <footer class="main-footer">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6">
+              <p>Your company &copy; 2017-2019</p>
+            </div>
+            <div class="col-sm-6 text-right">
+              <p>Design by <a href="https://bootstrapious.com" class="external">Bootstrapious</a></p>
+              <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions and it helps me to run Bootstrapious. Thank you for understanding :)-->
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- JavaScript files-->
+    <script src="{% static 'evaluator/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'evaluator/vendor/popper.js/umd/popper.min.js' %}"></script>
+    <script src="{% static 'evaluator/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'evaluator/js/grasp_mobile_progress_circle-1.0.0.min.js' %}"></script>
+    <script src="{% static 'evaluator/vendor/jquery.cookie/jquery.cookie.js' %}"></script>
+    <script src="{% static 'evaluator/vendor/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'evaluator/vendor/jquery-validation/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'evaluator/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'evaluator/js/charts-home.js' %}"></script>
+    <!-- Main File-->
+    <script src="{% static 'evaluator/js/front.js' %}"></script>
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+    crossorigin=""></script>
+    <script>
+        var mymap = L.map('id_map').setView([25.0375465,121.562244], 14);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: 'mapbox.streets',
+          accessToken: 'pk.eyJ1IjoiamVyZW15NDU1NSIsImEiOiJjamt6MjRvdWwwcG93M3ZtdGRkMXJlYjRyIn0.6SQzceRZS8aF6JHXBqFUyA'
+      }).addTo(mymap);
+
+
+
+      var ctx = document.getElementById('featureImpPieChart').getContext('2d');
+
+      var myBarChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data:  {
+                  labels: ["Square Feet", "Average Price", "March", "April", "May", "June", "July"],
+                  datasets: [{
+                      label: "Feature Importance",
+                      backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 99, 132)',
+                      ],
+                      //borderColor: 'rgb(255, 99, 132)',
+                      data: [28, 10, 5, 2, 20, 30, 45],
+                  }]
+              },
+        options: {
+          legend: {
+              display: false
+          },
+        }
+      });
+
+
+
+      var ctx = document.getElementById('accuracyLineChart').getContext('2d');
+      var myLineChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels:["0.1", "0.2", "0.3", "0.4", "0.5", "0.6", "0.7", "0.8", "0.9", "1.0"],
+            datasets: [{
+              backgroundColor: '#2da2fc',
+                data:[40.9, 23.7, 14.9, 6.8, 4.6, 3.7, 2.2, 0.8, 0.6, 0.3],
+            }]
+        },
+          options: {
+            scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'predict error percentage',
+                }
+              }],
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: 'data percentage'
+                }
+              }]
+            },
+            legend: {
+                display: false
+            },
+          }
+      });
+
+    </script>  
+  </body>
+</html>
