@@ -375,11 +375,10 @@
 
 
       var ctx = document.getElementById('featureImpPieChart').getContext('2d');
-
       var myBarChart = new Chart(ctx, {
         type: 'horizontalBar',
         data:  {
-                  labels: ["Square Feet", "Average Price", "March", "April", "May", "June", "July"],
+                  labels: ["Square Feet", "Average Price", "House Age", "MRT Distance", "Number of Bus Station in 100m", "Building Type - Thorough", "Having Compartment"],
                   datasets: [{
                       label: "Feature Importance",
                       backgroundColor: [
@@ -392,10 +391,18 @@
                         'rgb(255, 99, 132)',
                       ],
                       //borderColor: 'rgb(255, 99, 132)',
-                      data: [28, 10, 5, 2, 20, 30, 45],
+                      data: [13819, 11165, 8299, 8196, 7264, 1772, 1602],
                   }]
               },
         options: {
+          scales: {
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'F score',
+              }
+            }],
+          },
           legend: {
               display: false
           },
