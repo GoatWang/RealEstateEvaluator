@@ -6,6 +6,9 @@ import pandas as pd
 from datetime import datetime, timedelta
 import numpy as np
 from pymongo import MongoClient
+import xgboost
+from RealEstateEvaluator import settings
+
 client = MongoClient()
 db = client['RealEstate']
 
@@ -47,7 +50,7 @@ def get_nearest_tarin_station_and_distance(lng, lat):
     collection = db.TrainStation
     station = collection.find_one(query)
     station_loc = station['loc']
-    return {"name":station['station_name'], "distance":cal_distance(query_loc, station_loc),}
+    return {"name":station['station_name'], "distance":cal_distance(query_loc, station_loc)}
 
 def find_county(lng, lat):
     assert pd.notnull(lng), "lng should not be null"
@@ -110,8 +113,9 @@ def find_nearest_n_points(lng, lat, n):
     df_nearest_points['coordinates'] = df_nearest_points['loc'].apply(lambda x:x['coordinates'])
     avg_price = np.average(df_nearest_points['price'].values)
     df_nearest_points['dists'] = df_nearest_points['coordinates'].apply(lambda x: cal_distance(point, x))
+    df_nearest_points['date'] = df_nearest_points['date'].apply(lambda x:str(x.year) + "-" + str(x.month)  + "-" + str(x.day))
     return {
-        "df_nearest_points":df_nearest_points,
+        "nearest_points":df_nearest_points.to_dict(orient="records"),
         "avg_price":avg_price
     }
 
@@ -124,5 +128,11 @@ def find_low_use_electricity_rate(county, village):
     collection = db.LowUseElectricity
     low_use_electricity_rate = collection.find_one({'county':county, 'village':village})['low_use_electricity']
     return low_use_electricity_rate
+
+def xgb_evaluate(params, total_area_m2):
+    bst = xgboost.Booster({'nthread':1}) #init model
+    bst.load_model(os.path.join(settings.BASE_DIR, "evaluator", "models", "bst_subtotal_log.pickle.dat")) # load data
+    price = np.exp(bst.predict(xgboost.DMatrix(params))) / total_area_m2
+    return price 
 
 
