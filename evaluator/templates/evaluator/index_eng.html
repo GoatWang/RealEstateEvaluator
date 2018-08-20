@@ -74,9 +74,7 @@
             <div class="navbar-holder d-flex align-items-center justify-content-between">
               <div class="navbar-header">
                 <a href="index.html" class="navbar-brand">
-                  <div class="brand-text d-none d-md-inline-block"><span>RealEstate </span><strong class="text-primary">Evaluator</strong></div>
-                </a>
-              </div>
+                  <div class="brand-text d-none d-md-inline-block"><span>Real Estate</span>&nbsp;&nbsp;<strong class="text-primary">Evaluator</strong></div></a></div>
             </div>
           </div>
         </nav>
@@ -88,7 +86,7 @@
             <div class="col-md-5">
               <div class="card">
                 <div class="card-header d-flex align-items-center">
-                  <h4>Input Retrival Infomation</h4>
+                  <h4>Retrieval Information: The House Data in Taipei</h4>
                 </div>
                 <div class="card-body">
                   <form class="form-horizontal">
@@ -97,29 +95,50 @@
                     <div class="form-group row">
                       <label class="col-sm-4 form-control-label">Address</label>
                       <div class="col-sm-8">
-                        <input id="idAddressInput" type="text" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">in chinese</span>
+                        <input id="idAddressInput" type="text" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">Please input in Chinese</span>
                       </div>
                     </div>
-  
+
                     <div class="line"></div>
                     <div class="form-group row">
-                      <label class="col-sm-4 form-control-label">Ping(坪)</label>
+                      <label class="col-sm-4 form-control-label">District</label>
+                      <div class="col-sm-8 mb-3">
+                        <select name="district" class="form-control  text-small">
+                          <option>Wenshan(文山)</option>
+                          <option>Zhongzheng(中正)</option>
+                          <option>Wanhua(萬華)</option>
+                          <option>Datong(大同)</option>
+                          <option>Zhongshan(中山)</option>
+                          <option>Neihu(內湖)</option>
+                          <option>Songshan(松山)</option>
+                          <option>Xinyi(信義)</option>
+                          <option>Nangang(南港)</option>
+                          <option>Beitou(北投)</option>
+                          <option>Shilin(士林)</option>
+                          <option>Other</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 form-control-label">Ping (坪)</label>
                       <div class="col-sm-8">
-                        <input id="idPingInput" type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">Taiwanese units of measurement "坪"(Ping), 1 square meter = 3.3025 Ping, please input range from 0 to 2000 Pings</span>
+                        <input id="idPingInput" type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">Please input the range from 1 to 2000 Pings<br>Unit of measurement for area in Taiwan<br>1 square meter = 3.3025 Pings</span>
                       </div>
                     </div>
   
                     <div class="line"></div>
                     <div class="form-group row">
-                      <label class="col-sm-4 form-control-label">House Age</label>
+                      <label class="col-sm-4 form-control-label">Building Age</label>
                       <div class="col-sm-8">
-                        <input id="idHouseAgeInput" type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">please input range from 0 to 100 years old</span>
+                        <input id="idHouseAgeInput" type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">Please input the range from 0 to 100 years</span>
                       </div>
                     </div>
   
                     <div class="line"></div>
                     <div class="form-group row">
-                      <label class="col-sm-4 form-control-label">Usage</label>
+                      <label class="col-sm-4 form-control-label">Usage Type</label>
                       <div class="col-sm-8 mb-3">
                         <select id="idUsageSelect" name="usage" class="form-control text-small">
                           <option>For Living</option>
@@ -134,10 +153,10 @@
                       <label class="col-sm-4 form-control-label">Building Type</label>
                       <div class="col-sm-8 mb-3">
                         <select id="idBuildingTypeSelect" name="building_type" class="form-control  text-small">
-                          <option>1. Residential Building(residential building with legal elevators, above 10 floors.)</option>
-                          <option>2. Huaxia(residential buildings with elevators, above 7th floor and below 11th floor.)</option>
-                          <option>3. Apartment(residential buildings below 6th floor, according to the law can not set up elevators.)</option>
-                          <option>4. Thorough(buildings below the 6th floor, only a single owner.)</option>
+                          <option>1. Residential Building (Residential buildings with elevators, 11 floors or more)</option>
+                          <option>2. Huaxia (Residential buildings with elevators, between 7th and 10th floor)</option>
+                          <option>3. Apartment (Residential buildings without elevator, less than 6th floor)</option>
+                          <option>4. Single-family House (Buildings less than 6th floor, only a single owner)</option>
                           <option>5. Business Office</option>
                           <option>6. Store</option>
                           <option>7. Suite</option>
@@ -149,10 +168,10 @@
   
                     <div class="line"></div>
                     <div class="form-group row">
-                      <label class="col-sm-4 form-control-label">Building Material</label>
+                      <label class="col-sm-4 form-control-label">Construction Materials</label>
                       <div class="col-sm-8 mb-3">
                         <select id="idBuildingMaterialSelect" name="building_material" class="form-control  text-small">
-                          <option>RC(Reinforced Concrete)</option>
+                          <option>RC (Reinforced Concrete)</option>
                           <option>Brick</option>
                         </select>
                       </div>
@@ -160,19 +179,19 @@
                     
                     <div class="line"></div>
                     <div class="form-group row">
-                      <label class="col-sm-3 form-control-label">Other</label>
-                      <div class="col-sm-9">
+                      <label class="col-sm-4 form-control-label">Other</label>
+                      <div class="col-sm-8">
                         <div>
                           <input id="idHOMInput" type="checkbox" value="">
-                          <label for="idHOMInput">having organizational management</label>
+                          <label for="idHOMInput">With building management</label>
                         </div>
                         <div>
                           <input id="idHCInput" type="checkbox" value="">
-                          <label for="idHCInput">having compartment</label>
+                          <label for="idHCInput">With compartments</label>
                         </div>
                         <div>
                           <input id="idHAInput" type="checkbox" value="">
-                          <label for="idHAInput">having addition</label>
+                          <label for="idHAInput">With additions</label>
                         </div>
                       </div>
                     </div>
@@ -195,7 +214,7 @@
             <div class="col-md-7">
               <div class="card">
                 <div class="card-header d-flex align-items-center">
-                  <h4>Output Evaluated Infomation</h4>
+                  <h4>Value Forecast: The Price Evaluation</h4>
                 </div>
                 <div class="card-body">
                   <div class="row d-flex">
@@ -206,15 +225,15 @@
                         <div class="row">
                           <div class="col-md-6">
                             <h2>Evaluated Price</h2>
-                            <p class="text-small">Based on XGBoost model.</p>
+                            <p class="text-small">Based on XGBoost model</p>
                           </div>
                           <div class="col-md-6"><h2 id="id_price_h2">126,418<font class="text-small" style="color:black;">/Ping</font></h2></div>
                         </div>
                       </div>
 
                       <div class="card">
-                        <h2>Feature Importance</h2>
-                        <p class="text-small"> List the importance of the feature effecting the price.</p>
+                        <h2>Feature Importances</h2>
+                        <p class="text-small"> List the importance of the feature effecting the price</p>
                         <div class="col-md-12 pie-chart ">
                           <canvas id="featureImpPieChart" > </canvas>
                         </div>
@@ -227,7 +246,7 @@
 
                           <div class="col-md-6">
                             <div class="wrapper count-title d-flex text-center">
-                              <div class="name"><strong class="text-uppercase">Average Price</strong><span class="text-small">in top 8 nearest records</span>
+                              <div class="name"><strong class="text-uppercase">Average Price</strong><br><span class="text-small">in the top 8 nearest records</span>
                                 <div class="count-number"><font class="disc_stat_font">25</font></div>
                               </div>
                             </div>
@@ -235,7 +254,7 @@
 
                           <div class="col-md-6">
                             <div class="wrapper count-title d-flex text-center">
-                              <div class="name"><strong class="text-uppercase">Average Income</strong><span class="text-small">in the village(村里)</span>
+                              <div class="name"><strong class="text-uppercase">Average Income</strong><br/><span class="text-small">at the village(村里)</span>
                                 <div class="count-number"><font class="disc_stat_font">25</font></div>
                               </div>
                             </div>
@@ -251,7 +270,7 @@
 
                           <div class="col-md-6">
                             <div class="wrapper count-title d-flex text-center">
-                              <div class="name"><strong class="text-uppercase">Number of Bus Stations</strong><br/><span class="text-small">in 100m</span>
+                              <div class="name"><strong class="text-uppercase">Number of Bus Station</strong><br/><span class="text-small">in 100m</span>
                                 <div class="count-number"><font class="disc_stat_font">25</font></div>
                               </div>
                             </div>
@@ -324,7 +343,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-6">
-              <p>RealEstateEvaluator &copy; 2017-2019</p>
+              <p> &copy; 2018-2019 NLPist | All rights reserved.</p>
             </div>
             <div class="col-sm-6 text-right">
               <p>Design by <a href="https://bootstrapious.com" class="external">Bootstrapious</a></p>
