@@ -41,7 +41,7 @@
         #id_price_h2{
           font-size: 50px;
           align-content:center;
-          color: red ;
+          color:rgb(255, 99, 132) ;
           text-align: center;
         }
         form label{
@@ -162,15 +162,15 @@
                       <div class="col-sm-8">
                         <div>
                           <input id="idHOMInput" type="checkbox" value="">
-                          <label for="idHOMInput">With building management</label>
+                          <label for="idHOMInput">with building management</label>
                         </div>
                         <div>
                           <input id="idHCInput" type="checkbox" value="">
-                          <label for="idHCInput">With compartments</label>
+                          <label for="idHCInput">with compartments</label>
                         </div>
                         <div>
                           <input id="idHAInput" type="checkbox" value="">
-                          <label for="idHAInput">With additions</label>
+                          <label for="idHAInput">with additions</label>
                         </div>
                       </div>
                     </div>
@@ -203,7 +203,7 @@
                       <div class="card">
                         <div class="row">
                           <div class="col-md-6">
-                            <h2>Evaluated Price</h2>
+                            <h2>Evaluated Price $</h2>
                             <p class="text-small">Based on XGBoost model</p>
                           </div>
                           <div class="col-md-6"><h2 id="id_price_h2">126,418<font class="text-small" style="color:black;">/Ping</font></h2></div>
@@ -225,23 +225,23 @@
 
                           <div class="col-md-6">
                             <div class="wrapper count-title d-flex text-center">
-                              <div class="name"><strong class="text-uppercase">Average Price</strong><br><span class="text-small">in the top 8 nearest records</span>
-                                <div class="count-number"><font class="disc_stat_font">25</font></div>
+                              <div class="name"><strong class="text-uppercase">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Average Price</strong><br><span class="text-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in the top 8 nearest records</span>
+                                <div class="count-number"><font class="disc_stat_font">&nbsp;&nbsp;&nbsp;&nbsp;25</font></div>
                               </div>
                             </div>
                           </div>
 
                           <div class="col-md-6">
                             <div class="wrapper count-title d-flex text-center">
-                              <div class="name"><strong class="text-uppercase">Average Income</strong><br/><span class="text-small">at the village(村里)</span>
-                                <div class="count-number"><font class="disc_stat_font">25</font></div>
+                              <div class="name"><strong class="text-uppercase">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Average Income</strong><br/><span class="text-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at the village(村里)</span>
+                                <div class="count-number"><font class="disc_stat_font">&nbsp;&nbsp;25</font></div>
                               </div>
                             </div>
                           </div>
 
                           <div class="col-md-6">
                             <div class="wrapper count-title d-flex text-center">
-                              <div class="name"><strong class="text-uppercase">Distance to nearest MRT</strong><span></span>
+                              <div class="name"><strong class="text-uppercase">Distance to nearest MRT</strong><span class="text-small">unit: meters</span>
                                 <div class="count-number"><font class="disc_stat_font">25</font></div>
                               </div>
                             </div>
@@ -286,8 +286,8 @@
             <div class="col-md-6">
                 <div class="card sales-report">
                     <h2 class="display h4">Fitting Trend of XGBoost Model</h2>
-                    <p> Xgboost perform quite well on predicting house price.
-                      Red points represents the actual price, while black points represents predicted price. 
+                    <p> XGboost performs quite well on predicting house price.<br>
+                      Red points represents the actual price, while black points represent predicted price.<br> 
                       xAxes is data index and yAxes is ln(price).
                     </p>
                 <img width="500" src="{% static 'evaluator\img/fitting_plot_subtotal_log_divid_m2.png' %}">
@@ -300,10 +300,10 @@
             <div class="col-md-6">
               <div class="card sales-report">
                 <h2 class="display h4">Accuracy of XGBoost Model</h2>
-                <p> Xgboost perform quite well on predicting house price. We successfilly predict 
-                  80% of our testing data with less than 30% error, 
-                  65% of our testing data with less than 20% error, 
-                  41% of our testing data with less than 10% error.
+                <p>Our model successfully predicts 
+                  80% of testing data with less than 30% error,
+                  65% of testing data with less than 20% error,
+                  41% of testing data with less than 10% error.
                 </p>
                 <div>
                   <canvas id="accuracyLineChart"></canvas>
@@ -325,7 +325,7 @@
               <p> &copy; 2018-2019 NLPist | All rights reserved.</p>
             </div>
             <div class="col-sm-6 text-right">
-              <p>Design by <a href="https://bootstrapious.com" class="external">Bootstrapious</a></p>
+              <p>Designed by <a href="https://bootstrapious.com" class="external">Bootstrapious</a></p>
               <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions and it helps me to run Bootstrapious. Thank you for understanding :)-->
             </div>
           </div>
