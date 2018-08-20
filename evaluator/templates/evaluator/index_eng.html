@@ -74,7 +74,7 @@
             <div class="navbar-holder d-flex align-items-center justify-content-between">
               <div class="navbar-header">
                 <a href="index.html" class="navbar-brand">
-                  <div class="brand-text d-none d-md-inline-block"><span>RealEstate </span><strong class="text-primary">Evaluator</strong></div></a></div>
+                  <div class="brand-text d-none d-md-inline-block"><span>Real Estate</span>&nbsp;&nbsp;<strong class="text-primary">Evaluator</strong></div></a></div>
             </div>
           </div>
         </nav>
@@ -86,7 +86,7 @@
             <div class="col-md-5">
               <div class="card">
                 <div class="card-header d-flex align-items-center">
-                  <h4>Input Retrival Infomation</h4>
+                  <h4>Retrieval Information: The House Data in Taipei</h4>
                 </div>
                 <div class="card-body">
                   <form class="form-horizontal">
@@ -95,67 +95,10 @@
                     <div class="form-group row">
                       <label class="col-sm-4 form-control-label">Address</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">in chinese</span>
+                        <input type="text" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">Please input in Chinese</span>
                       </div>
                     </div>
-  
-                    <div class="line"></div>
-                    <div class="form-group row">
-                      <label class="col-sm-4 form-control-label">Ping(坪)</label>
-                      <div class="col-sm-8">
-                        <input type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">Taiwanese units of measurement "坪"(Ping), 1 square meter = 3.3025 Ping, please input range from 0 to 2000 Pings</span>
-                      </div>
-                    </div>
-  
-                    <div class="line"></div>
-                    <div class="form-group row">
-                      <label class="col-sm-4 form-control-label">House Age</label>
-                      <div class="col-sm-8">
-                        <input type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">please input range from 0 to 100 years old</span>
-                      </div>
-                    </div>
-  
-                    <div class="line"></div>
-                    <div class="form-group row">
-                      <label class="col-sm-4 form-control-label">Usage</label>
-                      <div class="col-sm-8 mb-3">
-                        <select name="usage" class="form-control text-small">
-                          <option>For Living</option>
-                          <option>For Business</option>
-                          <option>Other</option>
-                        </select>
-                      </div>
-                    </div>
-  
-                    <div class="line"></div>
-                    <div class="form-group row">
-                      <label class="col-sm-4 form-control-label">Building Type</label>
-                      <div class="col-sm-8 mb-3">
-                        <select name="building_type" class="form-control  text-small">
-                          <option>1. Residential Building(residential building with legal elevators, above 10 floors.)</option>
-                          <option>2. Huaxia(residential buildings with elevators, above 7th floor and below 11th floor.)</option>
-                          <option>3. Apartment(residential buildings below 6th floor, according to the law can not set up elevators.)</option>
-                          <option>4. Thorough(buildings below the 6th floor, only a single owner.)</option>
-                          <option>5. Business Office</option>
-                          <option>6. Store</option>
-                          <option>7. Suite</option>
-                          <option>8. Factory</option>
-                          <option>9. Other</option>
-                        </select>
-                      </div>
-                    </div>
-  
-                    <div class="line"></div>
-                    <div class="form-group row">
-                      <label class="col-sm-4 form-control-label">Building Material</label>
-                      <div class="col-sm-8 mb-3">
-                        <select name="building_material" class="form-control  text-small">
-                          <option>RC(Reinforced Concrete)</option>
-                          <option>Brick</option>
-                        </select>
-                      </div>
-                    </div>
-  
+
                     <div class="line"></div>
                     <div class="form-group row">
                       <label class="col-sm-4 form-control-label">District</label>
@@ -176,22 +119,79 @@
                         </select>
                       </div>
                     </div>
+
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 form-control-label">Ping (坪)</label>
+                      <div class="col-sm-8">
+                        <input type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">Please input the range from 1 to 2000 Pings<br>Unit of measurement for area in Taiwan<br>1 square meter = 3.3025 Pings</span>
+                      </div>
+                    </div>
+  
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 form-control-label">Building Age</label>
+                      <div class="col-sm-8">
+                        <input type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">Please input the range from 0 to 100 years</span>
+                      </div>
+                    </div>
+  
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 form-control-label">Usage Type</label>
+                      <div class="col-sm-8 mb-3">
+                        <select name="usage" class="form-control text-small">
+                          <option>For Living</option>
+                          <option>For Business</option>
+                          <option>Other</option>
+                        </select>
+                      </div>
+                    </div>
+  
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 form-control-label">Building Type</label>
+                      <div class="col-sm-8 mb-3">
+                        <select name="building_type" class="form-control  text-small">
+                          <option>1. Residential Building (Residential buildings with elevators, 11 floors or more)</option>
+                          <option>2. Huaxia (Residential buildings with elevators, between 7th and 10th floor)</option>
+                          <option>3. Apartment (Residential buildings without elevator, less than 6th floor)</option>
+                          <option>4. Single-family House (Buildings less than 6th floor, only a single owner)</option>
+                          <option>5. Business Office</option>
+                          <option>6. Store</option>
+                          <option>7. Suite</option>
+                          <option>8. Factory</option>
+                          <option>9. Other</option>
+                        </select>
+                      </div>
+                    </div>
+  
+                    <div class="line"></div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 form-control-label">Construction Materials</label>
+                      <div class="col-sm-8 mb-3">
+                        <select name="building_material" class="form-control  text-small">
+                          <option>RC (Reinforced Concrete)</option>
+                          <option>Brick</option>
+                        </select>
+                      </div>
+                    </div>
                     
                     <div class="line"></div>
                     <div class="form-group row">
-                      <label class="col-sm-3 form-control-label">Other</label>
-                      <div class="col-sm-9">
+                      <label class="col-sm-4 form-control-label">Other</label>
+                      <div class="col-sm-8">
                         <div>
                           <input id="option_having_organizational_management" type="checkbox" value="">
-                          <label for="option_having_organizational_management">having organizational management</label>
+                          <label for="option_having_organizational_management">With building management</label>
                         </div>
                         <div>
                           <input id="option_having_compartment" type="checkbox" value="">
-                          <label for="option_having_compartment">having compartment</label>
+                          <label for="option_having_compartment">With compartments</label>
                         </div>
                         <div>
                           <input id="option_having_addition" type="checkbox" value="">
-                          <label for="option_having_addition">having addition</label>
+                          <label for="option_having_addition">With additions</label>
                         </div>
                       </div>
                     </div>
@@ -209,7 +209,7 @@
             <div class="col-md-7">
               <div class="card">
                 <div class="card-header d-flex align-items-center">
-                  <h4>Output Evaluated Infomation</h4>
+                  <h4>Value Forecast: The Price Evaluation</h4>
                 </div>
                 <div class="card-body">
                   <div class="row d-flex">
@@ -220,15 +220,15 @@
                         <div class="row">
                           <div class="col-md-6">
                             <h2>Evaluated Price</h2>
-                            <p class="text-small">Based on XGBoost model.</p>
+                            <p class="text-small">Based on XGBoost model</p>
                           </div>
                           <div class="col-md-6"><h2 id="id_price_h2">126,418<font class="text-small" style="color:black;">/Ping</font></h2></div>
                         </div>
                       </div>
 
                       <div class="card">
-                        <h2>Feature Importance</h2>
-                        <p class="text-small"> List the importance of the feature effecting the price.</p>
+                        <h2>Feature Importances</h2>
+                        <p class="text-small"> List the importance of the feature effecting the price</p>
                         <div class="col-md-12 pie-chart ">
                           <canvas id="featureImpPieChart" > </canvas>
                         </div>
@@ -241,7 +241,7 @@
 
                           <div class="col-md-6">
                             <div class="wrapper count-title d-flex text-center">
-                              <div class="name"><strong class="text-uppercase">Average Price</strong><span class="text-small">in top 8 nearest records</span>
+                              <div class="name"><strong class="text-uppercase">Average Price</strong><br><span class="text-small">in the top 8 nearest records</span>
                                 <div class="count-number"><font class="disc_stat_font">25</font></div>
                               </div>
                             </div>
@@ -249,7 +249,7 @@
 
                           <div class="col-md-6">
                             <div class="wrapper count-title d-flex text-center">
-                              <div class="name"><strong class="text-uppercase">Average Income</strong><span class="text-small">in the village(村里)</span>
+                              <div class="name"><strong class="text-uppercase">Average Income</strong><br/><span class="text-small">at the village(村里)</span>
                                 <div class="count-number"><font class="disc_stat_font">25</font></div>
                               </div>
                             </div>
@@ -265,7 +265,7 @@
 
                           <div class="col-md-6">
                             <div class="wrapper count-title d-flex text-center">
-                              <div class="name"><strong class="text-uppercase">Number of Bus Stations</strong><br/><span class="text-small">in 100m</span>
+                              <div class="name"><strong class="text-uppercase">Number of Bus Station</strong><br/><span class="text-small">in 100m</span>
                                 <div class="count-number"><font class="disc_stat_font">25</font></div>
                               </div>
                             </div>
@@ -338,7 +338,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-6">
-              <p>Your company &copy; 2017-2019</p>
+              <p> &copy; 2018-2019 NLPist | All rights reserved.</p>
             </div>
             <div class="col-sm-6 text-right">
               <p>Design by <a href="https://bootstrapious.com" class="external">Bootstrapious</a></p>
