@@ -74,7 +74,9 @@
             <div class="navbar-holder d-flex align-items-center justify-content-between">
               <div class="navbar-header">
                 <a href="index.html" class="navbar-brand">
-                  <div class="brand-text d-none d-md-inline-block"><span>RealEstate </span><strong class="text-primary">Evaluator</strong></div></a></div>
+                  <div class="brand-text d-none d-md-inline-block"><span>RealEstate </span><strong class="text-primary">Evaluator</strong></div>
+                </a>
+              </div>
             </div>
           </div>
         </nav>
@@ -338,7 +340,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-6">
-              <p>Your company &copy; 2017-2019</p>
+              <p>RealEstateEvaluator &copy; 2017-2019</p>
             </div>
             <div class="col-sm-6 text-right">
               <p>Design by <a href="https://bootstrapious.com" class="external">Bootstrapious</a></p>
@@ -371,8 +373,6 @@
           id: 'mapbox.streets',
           accessToken: 'pk.eyJ1IjoiamVyZW15NDU1NSIsImEiOiJjamt6MjRvdWwwcG93M3ZtdGRkMXJlYjRyIn0.6SQzceRZS8aF6JHXBqFUyA'
       }).addTo(mymap);
-
-
 
       var ctx = document.getElementById('featureImpPieChart').getContext('2d');
       var myBarChart = new Chart(ctx, {
@@ -409,8 +409,6 @@
         }
       });
 
-
-
       var ctx = document.getElementById('accuracyLineChart').getContext('2d');
       var myLineChart = new Chart(ctx, {
           type: 'bar',
@@ -441,6 +439,24 @@
             },
           }
       });
+
+
+      //'address': '臺北市內湖區民權東路六段296巷1號',
+      //'主要建材': '鋼筋混凝土造',
+      //'主要用途': '住家用',
+      //'交易年月日': 0103-10-20,
+      //'土地移轉總面積(平方公尺)': 20.07,
+      //'建物型態': '住宅大樓(11層含以上有電梯)',
+      //'建物現況格局-隔間': '有',
+      //'建築完成年月': 0085-06-28,
+      //'有無管理組織': '有',
+      //'都市土地使用分區': '住',
+
+
+
+      
+
+
 
     </script>  
   </body>
