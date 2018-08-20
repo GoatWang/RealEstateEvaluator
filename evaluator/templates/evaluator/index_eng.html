@@ -97,7 +97,7 @@
                     <div class="form-group row">
                       <label class="col-sm-4 form-control-label">Address</label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">in chinese</span>
+                        <input id="idAddressInput" type="text" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">in chinese</span>
                       </div>
                     </div>
   
@@ -105,7 +105,7 @@
                     <div class="form-group row">
                       <label class="col-sm-4 form-control-label">Ping(坪)</label>
                       <div class="col-sm-8">
-                        <input type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">Taiwanese units of measurement "坪"(Ping), 1 square meter = 3.3025 Ping, please input range from 0 to 2000 Pings</span>
+                        <input id="idPingInput" type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">Taiwanese units of measurement "坪"(Ping), 1 square meter = 3.3025 Ping, please input range from 0 to 2000 Pings</span>
                       </div>
                     </div>
   
@@ -113,7 +113,7 @@
                     <div class="form-group row">
                       <label class="col-sm-4 form-control-label">House Age</label>
                       <div class="col-sm-8">
-                        <input type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">please input range from 0 to 100 years old</span>
+                        <input id="idHouseAgeInput" type="number" class="form-control text-small" min="0" max="2000"><span class="text-small text-gray help-block-none">please input range from 0 to 100 years old</span>
                       </div>
                     </div>
   
@@ -121,7 +121,7 @@
                     <div class="form-group row">
                       <label class="col-sm-4 form-control-label">Usage</label>
                       <div class="col-sm-8 mb-3">
-                        <select name="usage" class="form-control text-small">
+                        <select id="idUsageSelect" name="usage" class="form-control text-small">
                           <option>For Living</option>
                           <option>For Business</option>
                           <option>Other</option>
@@ -133,7 +133,7 @@
                     <div class="form-group row">
                       <label class="col-sm-4 form-control-label">Building Type</label>
                       <div class="col-sm-8 mb-3">
-                        <select name="building_type" class="form-control  text-small">
+                        <select id="idBuildingTypeSelect" name="building_type" class="form-control  text-small">
                           <option>1. Residential Building(residential building with legal elevators, above 10 floors.)</option>
                           <option>2. Huaxia(residential buildings with elevators, above 7th floor and below 11th floor.)</option>
                           <option>3. Apartment(residential buildings below 6th floor, according to the law can not set up elevators.)</option>
@@ -151,30 +151,9 @@
                     <div class="form-group row">
                       <label class="col-sm-4 form-control-label">Building Material</label>
                       <div class="col-sm-8 mb-3">
-                        <select name="building_material" class="form-control  text-small">
+                        <select id="idBuildingMaterialSelect" name="building_material" class="form-control  text-small">
                           <option>RC(Reinforced Concrete)</option>
                           <option>Brick</option>
-                        </select>
-                      </div>
-                    </div>
-  
-                    <div class="line"></div>
-                    <div class="form-group row">
-                      <label class="col-sm-4 form-control-label">District</label>
-                      <div class="col-sm-8 mb-3">
-                        <select name="district" class="form-control  text-small">
-                          <option>Wenshan(文山)</option>
-                          <option>Zhongzheng(中正)</option>
-                          <option>Wanhua(萬華)</option>
-                          <option>Datong(大同)</option>
-                          <option>Zhongshan(中山)</option>
-                          <option>Neihu(內湖)</option>
-                          <option>Songshan(松山)</option>
-                          <option>Xinyi(信義)</option>
-                          <option>Nangang(南港)</option>
-                          <option>Beitou(北投)</option>
-                          <option>Shilin(士林)</option>
-                          <option>Other</option>
                         </select>
                       </div>
                     </div>
@@ -184,23 +163,28 @@
                       <label class="col-sm-3 form-control-label">Other</label>
                       <div class="col-sm-9">
                         <div>
-                          <input id="option_having_organizational_management" type="checkbox" value="">
-                          <label for="option_having_organizational_management">having organizational management</label>
+                          <input id="idHOMInput" type="checkbox" value="">
+                          <label for="idHOMInput">having organizational management</label>
                         </div>
                         <div>
-                          <input id="option_having_compartment" type="checkbox" value="">
-                          <label for="option_having_compartment">having compartment</label>
+                          <input id="idHCInput" type="checkbox" value="">
+                          <label for="idHCInput">having compartment</label>
                         </div>
                         <div>
-                          <input id="option_having_addition" type="checkbox" value="">
-                          <label for="option_having_addition">having addition</label>
+                          <input id="idHAInput" type="checkbox" value="">
+                          <label for="idHAInput">having addition</label>
                         </div>
                       </div>
                     </div>
                     <div class="line"></div>
                     <div class="form-group row">
                       <div class="col-md-3 offset-md-9">
-                        <button type="submit" class="btn btn-primary">Evaluate</button>
+                          <button id="idDemoBtn" class="btn btn-primary">Demo</button>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-3 offset-md-9">
+                        <button id="idEvaluateBtn" class="btn btn-primary">Evaluate</button>
                       </div>
                     </div>
                   </form>
@@ -447,13 +431,37 @@
       //'交易年月日': 0103-10-20,
       //'土地移轉總面積(平方公尺)': 20.07,
       //'建物型態': '住宅大樓(11層含以上有電梯)',
-      //'建物現況格局-隔間': '有',
       //'建築完成年月': 0085-06-28,
+
+      //'建物現況格局-隔間': '有',
       //'有無管理組織': '有',
       //'都市土地使用分區': '住',
 
+      $("#idDemoBtn").click(function(e){
+        e.preventDefault()
+        $("#idAddressInput").val('臺北市內湖區民權東路六段296巷1號')
+        $("#idPingInput").val((20.07*0.3025).toString())
+        $("#idHouseAgeInput").val(5)
+        $("#idUsageSelect").find('option').eq(0).attr("selected", "selected")
+        $("#idBuildingTypeSelect").find('option').eq(0).attr("selected", "selected")
+        $("#idBuildingMaterialSelect").find('option').eq(0).attr("selected", "selected")
+        $("#idHOMInput").attr("checked", "checked")
+        $("#idHCInput").attr("checked", "checked")
+        $("#idHAInput").attr("checked", "checked")
+      })
 
-
+      $("#idEvaluateBtn").click(function(e){
+        e.preventDefault()
+        address = $("#idAddressInput").val()
+        total_area_m2 = Number($("#idPingInput").val()) / 0.3025
+        house_year = $("#idHouseAgeInput").val()
+        usage = $("#idUsageSelect").val()
+        building_type = $("#idBuildingTypeSelect").val()
+        building_material = $("#idBuildingMaterialSelect").val()
+        having_origanizational_management = $("#idHOMInput").attr("checked") == "checked"
+        having_compartment = $("#idHCInput").attr("checked") == "checked"
+        haveing_addition = $("#idHAInput").attr("checked") == "checked"
+      })
       
 
 
