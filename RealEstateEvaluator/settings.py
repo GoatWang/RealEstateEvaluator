@@ -125,6 +125,7 @@ STATIC_URL = '/static/'
 if 'GOOGLEMAPAPIKEY' in os.environ:
     pwddata = {
         "GOOGLEMAPAPIKEY" : os.environ.get('GOOGLEMAPAPIKEY'),
+        "MONGO_URL" : os.environ.get('MONGO_URL'),
     }
 else:
     with open(os.path.join(BASE_DIR, "pwd.json"), 'r', encoding='utf8') as f:
@@ -132,5 +133,6 @@ else:
 
 
 GOOGLEMAPAPIKEY = pwddata['GOOGLEMAPAPIKEY']
+MONGO_URL = pwddata['MONGO_URL']
 
 
