@@ -9,8 +9,10 @@ from pymongo import MongoClient
 import xgboost
 from RealEstateEvaluator import settings
 
-client = MongoClient()
-db = client['RealEstate']
+client = MongoClient(settings.MONGO_URL)
+db = client['taiwan-real-estate']
+# client = MongoClient()
+# db = client['RealEstate']
 
 from RealEstateEvaluator import settings
 
@@ -99,7 +101,9 @@ def find_nearest_n_points(lng, lat, n):
     current_date = datetime.now()
     query = {
         "$and":[
-            {'date':{"$gt":datetime(year=current_date.year-1911, month=current_date.month, day=current_date.day)-timedelta(500)}},
+            {'date':{
+                "$gt":datetime(year=current_date.year-1911, month=current_date.month, day=current_date.day)-timedelta(500),
+            }},
             { "loc" :
                     { "$near" :
                     { "$geometry" :
@@ -114,6 +118,7 @@ def find_nearest_n_points(lng, lat, n):
     avg_price = np.average(df_nearest_points['price'].values)
     df_nearest_points['dists'] = df_nearest_points['coordinates'].apply(lambda x: cal_distance(point, x))
     df_nearest_points['date'] = df_nearest_points['date'].apply(lambda x:str(x.year) + "-" + str(x.month)  + "-" + str(x.day))
+    df_nearest_points['house_finish_year'] = df_nearest_points['house_finish_year'].apply(lambda x:str(x.year) + "-" + str(x.month)  + "-" + str(x.day))
     return {
         "nearest_points":df_nearest_points.to_dict(orient="records"),
         "avg_price":avg_price

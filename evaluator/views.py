@@ -94,12 +94,17 @@ def evaluate(request):
         params['Dummy_Shilin'] = 1 if "士林" in county else 0
 
         # other 
-        params['income_avg']
+        params['income_avg'] = avg_income
         params['nearest_tarin_station_distance'] = station_distance
         params['num_of_bus_stations_in_100m'] = num_bus_stations
         params['nearest_point_avg_price'] = avg_price
+        print(params)
 
         price = xgb_evaluate(list(params), total_area_m2)
         return JsonResponse({
             "price":int(price[0] / 0.3025),
+            "station_distance":int(station_distance),
+            "num_bus_stations":int(num_bus_stations),
+            "avg_income":int(avg_income),
+            "avg_price":int(avg_price / 0.3025)
         })
