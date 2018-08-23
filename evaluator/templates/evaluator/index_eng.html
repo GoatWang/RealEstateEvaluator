@@ -64,7 +64,10 @@
           max-height:31.5px;
         }
         .disc_stat_font{
-          font-size: 80px;
+          font-size: 55px;
+        }
+        .cls_nearest_obj_table{
+          margin-top:10px;
         }
     </style>
       
@@ -295,7 +298,7 @@
       </div>
 
       <div id="id_map"></div>
-
+      <div id="id_html_table"></div>
       <!-- Header Section-->
       <section class="dashboard-header section-padding">
         <div class="container-fluid">
@@ -500,6 +503,15 @@
             document.getElementById("idAvgIncomeFont").innerHTML = data['avg_income']
             document.getElementById("idDistMrtFont").innerHTML = data['station_distance']
             document.getElementById("idBusStationFont").innerHTML = data['num_bus_stations']
+            document.getElementById("id_html_table").innerHTML = data['nearest_points_table']
+
+            mymap.setView(data['target_coordinate'], 18);
+            data['nearest_points_coordinates'].forEach(function(v, i){
+              console.log(v)
+              L.marker(v).addTo(mymap)
+              .bindPopup(i.toString())
+              .openPopup();
+            })
             document.body.style.cursor = "default";
           },
           error: function(){

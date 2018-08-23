@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from evaluator.utl import geoencode, find_county, find_village, get_nearest_tarin_station_and_distance, find_bus_stations_in_100m, find_nearest_n_points, find_avg_income, find_low_use_electricity_rate, xgb_evaluate
 import pandas as pd
 import numpy as np
-
+from bs4 import BeautifulSoup
 def index(request):
     template = loader.get_template('evaluator/index_eng.html')
     context = {}
@@ -100,11 +100,31 @@ def evaluate(request):
         params['nearest_point_avg_price'] = avg_price
         print(params)
 
+        df_nearest_points = pd.DataFrame(nearest_points)
+        df_nearest_points['price'] = df_nearest_points['price'].astype(int).astype(str).apply(lambda x:x[:-3] + ", " + x[-3:])
+        soup = BeautifulSoup(df_nearest_points.loc[:8, ["date", "price", "total_area_m2", "building_type", "house_finish_year", "floor", "address"]].to_html(), 'lxml')
+        tag = soup.table
+        tag['class'] = 'table table-striped table-sm cls_nearest_obj_table'
+        html_table = str(tag).replace("\n", "")
+
         price = xgb_evaluate(list(params), total_area_m2)
+        price = str(int(price[0] / 0.3025))
+        price = price[:-3] +  ', ' + price[-3:]
+        print(price)
+
+        avg_price = str(int(avg_price / 0.3025))
+        avg_price = avg_price[:-3] +  ', ' + avg_price[-3:]
+
+        nearest_points_coordinates = list(df_nearest_points.loc[:20, 'coordinates'].apply(lambda x:[x[1], x[0]]))
+
         return JsonResponse({
-            "price":int(price[0] / 0.3025),
+            "price":price,
             "station_distance":int(station_distance),
             "num_bus_stations":int(num_bus_stations),
             "avg_income":int(avg_income),
-            "avg_price":int(avg_price / 0.3025)
+            "avg_price":avg_price,
+            "target_coordinate":[lat, lng],
+            "nearest_points_table":html_table,
+            "nearest_points_coordinates":nearest_points_coordinates,
+
         })
