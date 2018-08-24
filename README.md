@@ -31,5 +31,6 @@ Still in local. However codes are all in this repo.
 8. 捷運站進出人次: http://dotstat.taipei.gov.tw/pxweb2007P/Dialog/varval.asp?ma=TP10202YA&ti=%BBO%A5%5F%B1%B6%B9B%A6U%AF%B8%B6i%A5X%A4H%A6%B8%2D%A6%7E&path=../PXfile/CountyStatistics/&search=%AAO%BE%F4&lang=9
 
 # Econemic Background Planning Book
+https://github.com/GoatWang/RealEstateEvaluator/blob/master/PlanningBook.pdf
 
 
