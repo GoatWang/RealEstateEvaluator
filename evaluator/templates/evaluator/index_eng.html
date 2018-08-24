@@ -97,11 +97,10 @@
                     <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><span class="d-none d-sm-inline-block">Model-XGBoost</span></a>
                       <ul aria-labelledby="languages" class="dropdown-menu">
                           <li><a rel="nofollow" href="{% url 'index' model=0 %}" class="dropdown-item"> <span>Model-XGBoost</span></a></li>
-                          <li><a rel="nofollow" href="{% url 'index' model=1 %}" class="dropdown-item"> <span>Model-OLS</span></a></li>
+                          <li><a rel="nofollow" href="{% url 'index' model=1 %}" class="dropdown-item"> <span>Model-Hedonic</span></a></li>
                       </ul>
                     </li>
                     <!-- Log out-->
-                    <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
                   </ul>
                 </div>
           </div>
@@ -127,7 +126,7 @@
         <div class="text-center">
             <span style="font-size:0.8cm;color:rgb(44, 143, 201);"><strong>Incredible Accuracy</strong></span>
             <p class="desc_p">Compared with actual selling price, the Cross Validation presents<br>
-              90% of testing data with less than 30% error<br>80% of testing data with less than 20% error<br>50% of testing data with less than 10% error<br><br></p>
+              <strong>89%</strong> of testing data with less than<strong> 30%</strong> error<br><strong>76%</strong> of testing data with less than<strong> 20%</strong> error<br><strong>47%</strong> of testing data with less than<strong> 10%</strong> error<br><br></p>
         </div>
       </div>
 
@@ -328,8 +327,8 @@
                 <h2 class="display h4"><strong>Fitting Trend of XGBoost Model</strong></h2>
                 <p> XGboost performs quite well on predicting house price.<br>
                       Red points represents the actual price, while black points represent predicted price.<br> 
-                      xAxes is data index and yAxes is ln(price).</p>
-                <img width="500" src="{% static 'evaluator\img/xgb_crossvalid.png' %}">
+                      xAxes is data index and yAxes is price per square meter in thousand.</p>
+                <img width="600" src="{% static 'evaluator\img/xgb_crossvalid.png' %}">
               </div>
             </div>
             <!-- Line Chart -->
@@ -337,9 +336,9 @@
               <div class="card sales-report">
                 <h2 class="display h4"><strong>Accuracy of XGBoost Model</strong></h2>
                 <p>Our model successfully predicts 
-                  90% of testing data with less than 30% error,
-                  80% of testing data with less than 20% error,
-                  50% of testing data with less than 10% error.</p>
+                  89% of testing data with less than 30% error,
+                  76% of testing data with less than 20% error,
+                  47% of testing data with less than 10% error.</p>
                 <canvas id="accuracyLineChart"></canvas>
               </div>
             </div>

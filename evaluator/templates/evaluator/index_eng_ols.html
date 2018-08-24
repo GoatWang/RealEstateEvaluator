@@ -94,14 +94,11 @@
 
                   <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                     <!-- Models dropdown    -->
-                    <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><span class="d-none d-sm-inline-block">Model-OLS</span></a>
+                    <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><span class="d-none d-sm-inline-block">Model - Hedonic</span></a>
                       <ul aria-labelledby="languages" class="dropdown-menu">
-                        <li><a rel="nofollow" href="{% url 'index' model=0 %}" class="dropdown-item"> <span>Model-XGBoost</span></a></li>
-                        <li><a rel="nofollow" href="{% url 'index' model=1 %}" class="dropdown-item"> <span>Model-OLS</span></a></li>
+                        <li><a rel="nofollow" href="{% url 'index' model=0 %}" class="dropdown-item"> <span>Model - XGBoost</span></a></li>
+                        <li><a rel="nofollow" href="{% url 'index' model=1 %}" class="dropdown-item"> <span>Model - Hedonic</span></a></li>
                       </ul>
-                    </li>
-                    <!-- Log out-->
-                    <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
                   </ul>
                 </div>
           </div>
@@ -127,7 +124,7 @@
         <div class="text-center">
             <span style="font-size:0.8cm;color:rgb(44, 143, 201);"><strong>Incredible Accuracy</strong></span>
             <p class="desc_p">Compared with actual selling price, the Cross Validation presents<br>
-              90% of testing data with less than 30% error<br>80% of testing data with less than 20% error<br>50% of testing data with less than 10% error<br><br></p>
+              <strong>89%</strong> of testing data with less than<strong> 30%</strong> error<br><strong>76%</strong> of testing data with less than<strong> 20%</strong> error<br><strong>47%</strong> of testing data with less than<strong> 10%</strong> error<br><br></p>
         </div>
       </div>
 
@@ -253,7 +250,7 @@
                         <div class="row">
                           <div class="col-md-6">
                             <h2>Evaluated Price $</h2>
-                            <p class="text-small">Based on OLS model and predict its mean value</p>
+                            <p class="text-small">Based on Hedonic model to predict its mean value</p>
                           </div>
                           <div class="col-md-6"><h2 id="id_price_h2">0<font class="text-small" style="color:black;">/Ping</font></h2></div>
                         </div>
@@ -286,7 +283,7 @@
                           <div class="col-md-6">
                             <div class="wrapper count-title d-flex text-center">
                               <div class="name"><strong class="text-uppercase">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Average Price</strong><br><span class="text-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in the top 8 nearest records</span>
-                                <div class="count-number"><font id="idAvgPriceFont" class="disc_stat_font">&nbsp;&nbsp;&nbsp;&nbsp;25</font></div>
+                                <div class="count-number"><font id="idAvgPriceFont" class="disc_stat_font">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0</font></div>
                               </div>
                             </div>
                           </div>
@@ -294,7 +291,7 @@
                           <div class="col-md-6">
                             <div class="wrapper count-title d-flex text-center">
                               <div class="name"><strong class="text-uppercase">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Average Income</strong><br/><span class="text-small">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at the village</span>
-                                <div class="count-number"><font id="idAvgIncomeFont" class="disc_stat_font">&nbsp;&nbsp;25</font></div>
+                                <div class="count-number"><font id="idAvgIncomeFont" class="disc_stat_font">&nbsp;&nbsp;0</font></div>
                               </div>
                             </div>
                           </div>
@@ -302,7 +299,7 @@
                           <div class="col-md-6">
                             <div class="wrapper count-title d-flex text-center">
                               <div class="name"><strong class="text-uppercase">Distance to nearest MRT</strong><span class="text-small">unit: meters</span>
-                                <div class="count-number"><font id="idDistMrtFont" class="disc_stat_font">25</font></div>
+                                <div class="count-number"><font id="idDistMrtFont" class="disc_stat_font">0</font></div>
                               </div>
                             </div>
                           </div>
@@ -310,7 +307,7 @@
                           <div class="col-md-6">
                             <div class="wrapper count-title d-flex text-center">
                               <div class="name"><strong class="text-uppercase">Number of Bus Station</strong><br/><span class="text-small">in 100m</span>
-                                <div class="count-number"><font id="idBusStationFont" class="disc_stat_font">25</font></div>
+                                <div class="count-number"><font id="idBusStationFont" class="disc_stat_font">0</font></div>
                               </div>
                             </div>
                           </div>
@@ -334,21 +331,21 @@
             <!-- Line Chart -->
             <div class="col-md-6">
               <div class="card sales-report">
-                <h2 class="display h4"><strong>Fitting Trend of OLS Model</strong></h2>
-                <p> XGboost performs quite well on predicting house price.<br>
+                <h2 class="display h4"><strong>Fitting Trend of Hedonic Price Model</strong></h2>
+                <p> Hedonic performs quite well on predicting house price.<br>
                       Red points represents the actual price, while black points represent predicted price.<br> 
-                      xAxes is data index and yAxes is ln(price).</p>
-                <img width="500" src="{% static 'evaluator\img/ols_crosssvalid.png' %}">
+                      xAxes is data index and yAxes is price per square meter in thousand.</p>
+                <img width="600" src="{% static 'evaluator\img/ols_crosssvalid.png' %}">
               </div>
             </div>
             <!-- Line Chart -->
             <div class="col-md-6">
               <div class="card sales-report">
-                <h2 class="display h4"><strong>Accuracy of OLS Model</strong></h2>
+                <h2 class="display h4"><strong>Accuracy of Hedonic Price Model</strong></h2>
                 <p>Our model successfully predicts 
-                  90% of testing data with less than 30% error,
-                  80% of testing data with less than 20% error,
-                  50% of testing data with less than 10% error.</p>
+                  74% of testing data with less than 30% error,
+                  57% of testing data with less than 20% error,
+                  34% of testing data with less than 10% error.</p>
                   <canvas id="accuracyLineChart"></canvas>
               </div>
             </div>
