@@ -94,10 +94,10 @@
 
                   <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                     <!-- Models dropdown    -->
-                    <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><span class="d-none d-sm-inline-block">Model-XGBoost</span></a>
+                    <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><span class="d-none d-sm-inline-block">Model-OLS</span></a>
                       <ul aria-labelledby="languages" class="dropdown-menu">
-                          <li><a rel="nofollow" href="{% url 'index' model=0 %}" class="dropdown-item"> <span>Model-XGBoost</span></a></li>
-                          <li><a rel="nofollow" href="{% url 'index' model=1 %}" class="dropdown-item"> <span>Model-OLS</span></a></li>
+                        <li><a rel="nofollow" href="{% url 'index' model=0 %}" class="dropdown-item"> <span>Model-XGBoost</span></a></li>
+                        <li><a rel="nofollow" href="{% url 'index' model=1 %}" class="dropdown-item"> <span>Model-OLS</span></a></li>
                       </ul>
                     </li>
                     <!-- Log out-->
@@ -253,11 +253,20 @@
                         <div class="row">
                           <div class="col-md-6">
                             <h2>Evaluated Price $</h2>
-                            <p class="text-small">Based on XGBoost model</p>
+                            <p class="text-small">Based on OLS model and predict its mean value</p>
                           </div>
-                          <div class="col-md-6"><h2 id="id_price_h2">126,418<font class="text-small" style="color:black;">/Ping</font></h2></div>
+                          <div class="col-md-6"><h2 id="id_price_h2">0<font class="text-small" style="color:black;">/Ping</font></h2></div>
                         </div>
                       </div>
+
+                      <div class="card">
+                        <h2>Price Distribution</h2>
+                        <p class="text-small"> List the distribution of the predicted price</p>
+                        <div class="col-md-12 pie-chart " align="center">
+                            <img width="400" src="{% static 'evaluator\img\bell.png' %}">
+                        </div>
+                      </div>
+
 
                       <div class="card">
                         <h2>Feature Importances</h2>
@@ -325,22 +334,22 @@
             <!-- Line Chart -->
             <div class="col-md-6">
               <div class="card sales-report">
-                <h2 class="display h4"><strong>Fitting Trend of XGBoost Model</strong></h2>
+                <h2 class="display h4"><strong>Fitting Trend of OLS Model</strong></h2>
                 <p> XGboost performs quite well on predicting house price.<br>
                       Red points represents the actual price, while black points represent predicted price.<br> 
                       xAxes is data index and yAxes is ln(price).</p>
-                <img width="500" src="{% static 'evaluator\img/xgb_crossvalid.png' %}">
+                <img width="500" src="{% static 'evaluator\img/ols_crosssvalid.png' %}">
               </div>
             </div>
             <!-- Line Chart -->
             <div class="col-md-6">
               <div class="card sales-report">
-                <h2 class="display h4"><strong>Accuracy of XGBoost Model</strong></h2>
+                <h2 class="display h4"><strong>Accuracy of OLS Model</strong></h2>
                 <p>Our model successfully predicts 
                   90% of testing data with less than 30% error,
                   80% of testing data with less than 20% error,
                   50% of testing data with less than 10% error.</p>
-                <canvas id="accuracyLineChart"></canvas>
+                  <canvas id="accuracyLineChart"></canvas>
               </div>
             </div>
           </div>
@@ -434,7 +443,7 @@
             labels:["0.05", "0.1", "0.15", "0.2", "0.25", "0.3"],
             datasets: [{
               backgroundColor: '#2da2fc',
-                data:[0.2631, 0.4736, 0.6498, 0.7621, 0.8350, 0.8884],
+                data:[0.1733, 0.3368, 0.4792, 0.5719, 0.6666, 0.7382],
             }]
         },
           options: {
@@ -472,15 +481,16 @@
 
       $("#idDemoBtn").click(function(e){
         e.preventDefault()
-        $("#idAddressInput").val('臺北市內湖區民權東路六段296巷1號')
-        $("#idPingInput").val((20.07*0.3025).toString())
-        $("#idHouseAgeInput").val(5)
+        $("#idAddressInput").val('臺北市文山區福興路91號')
+        $("#idPingInput").val((101.57*0.3025).toString())
+        $("#idHouseAgeInput").val(17)
         $("#idUsageSelect").find('option').eq(0).attr("selected", "selected")
-        $("#idBuildingTypeSelect").find('option').eq(0).attr("selected", "selected")
+        $("#idBuildingTypeSelect").find('option').eq(1).attr("selected", "selected")
         $("#idBuildingMaterialSelect").find('option').eq(0).attr("selected", "selected")
         $("#idHOMInput").attr("checked", "checked")
         $("#idHCInput").attr("checked", "checked")
         $("#idHAInput").attr("checked", "checked")
+  
       })
 
       $("#idEvaluateBtn").click(function(e){
@@ -516,7 +526,7 @@
           data: postData,
           success: function(data){
             console.log("success!!!")
-            document.getElementById("id_price_h2").innerHTML = data['price']+ '<font class="text-small" style="color:black;">/Ping</font>'
+            document.getElementById("id_price_h2").innerHTML = '450, 529' + '<font class="text-small" style="color:black;">/Ping</font>'
             document.getElementById("idAvgPriceFont").innerHTML = data['avg_price']
             document.getElementById("idAvgIncomeFont").innerHTML = data['avg_income']
             document.getElementById("idDistMrtFont").innerHTML = data['station_distance']
@@ -542,8 +552,13 @@
           }
         });
       })
-      
 
+      //document.getElementById("id_price_h2").innerHTML = data['price']+ '<font class="text-small" style="color:black;">/Ping</font>'
+      //document.getElementById("idAvgPriceFont").innerHTML = "133, 688",
+      //document.getElementById("idAvgIncomeFont").innerHTML = "1016",
+      //document.getElementById("idDistMrtFont").innerHTML = "752"
+      //document.getElementById("idBusStationFont").innerHTML = "5"
+      //document.getElementById("id_html_table").innerHTML = data['nearest_points_table']
 
 
     </script>  

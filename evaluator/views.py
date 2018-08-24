@@ -6,10 +6,15 @@ from evaluator.utl import geoencode, find_county, find_village, get_nearest_tari
 import pandas as pd
 import numpy as np
 from bs4 import BeautifulSoup
-def index(request):
-    template = loader.get_template('evaluator/index_eng.html')
-    context = {}
-    return HttpResponse(template.render(context, request))
+def index(request, model=0):
+    if model == 0: # XGB
+        template = loader.get_template('evaluator/index_eng.html')
+        context = {} 
+        return HttpResponse(template.render(context, request))
+    if model == 1: # OLS
+        template = loader.get_template('evaluator/index_eng_ols.html')
+        context = {}
+        return HttpResponse(template.render(context, request))
 
 @csrf_exempt
 def evaluate(request):
