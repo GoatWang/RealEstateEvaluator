@@ -26,7 +26,7 @@ SECRET_KEY = 'ivg5gs-y@#y)kq#1x54f-bmpba5da=-&%*ng(o(g84(#a2t)e-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['realestateevaluator-dev.ap-southeast-1.elasticbeanstalk.com']
 
 
 # Application definition
@@ -120,7 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 if 'GOOGLEMAPAPIKEY' in os.environ:
     pwddata = {
