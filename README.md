@@ -19,6 +19,7 @@ https://github.com/GoatWang/RealEstateEvaluator/blob/master/RearEstateEvaluator_
 
 # Website
 Still in local. However codes are all in this repo.
+http://realestateevaluator-dev.ap-southeast-1.elasticbeanstalk.com/evaluator/
 
 # Datasets
 1. 臺北市住宅竊盜點位資訊: http://data.taipei/opendata/datalist/datasetMeta…
